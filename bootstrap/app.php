@@ -5,6 +5,9 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Console\Scheduling\Schedule;
 
+use Illuminate\Support\Facades\Log;
+use App\Jobs\SendTaskDueTomorrowReminderJob;
+
 return Application::configure(basePath: dirname(__DIR__))
 
     ->withRouting(
@@ -23,12 +26,20 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
 
-    ->withSchedule(function (Illuminate\Console\Scheduling\Schedule $schedule) {
-        $schedule->job(new \App\Jobs\SendTaskReminderJob())
-            ->dailyAt('09:00') 
-            ->onFailure(function ($e) {
-                \Log::error('Task Reminder Scheduler failed: '.$e->getMessage());
-        });
+   ->withSchedule(function (Schedule $schedule) {
+        $schedule->job(new SendTaskDueTomorrowReminderJob())
+            ->dailyAt('09:00')
+            ->before(function () {
+                Log::info("Scheduler started: Checking for tomorrow's tasks.");
+            })
+            ->onSuccess(function () {
+                Log::info("Scheduler executed successfully.");
+            })
+            ->onFailure(function (\Throwable $e) {
+                Log::error('Scheduler failed: '.$e->getMessage(), [
+                    'trace' => $e->getTraceAsString()
+                ]);
+            });
     })
 
     ->withExceptions(function (Exceptions $exceptions): void {

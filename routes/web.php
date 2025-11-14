@@ -18,21 +18,37 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/test-mail', function () {
-    try {
-        $task = new \App\Models\Task([
-            'title' => 'Demo Task',
-            'due_date' => now()->addDay(),
-        ]);
+// Route::get('/test-mail', function () {
+//     try {
+//         $task = new \App\Models\Task([
+//             'title' => 'Demo Task',
+//             'due_date' => now()->addDay(),
+//         ]);
 
-        Mail::to('test@example.com')->send(new TaskReminderMail($task));
+//         Mail::to('test@example.com')->send(new TaskReminderMail($task));
 
-        return "Mail sent successfully. Check storage/logs/laravel.log";
-    } catch (\Exception $e) {
-        Log::error('Mail sending failed: ' . $e->getMessage());
-        return "Mail failed: " . $e->getMessage();
-    }
-});
+//         return "Mail sent successfully. Check storage/logs/laravel.log";
+//     } catch (\Exception $e) {
+//         Log::error('Mail sending failed: ' . $e->getMessage());
+//         return "Mail failed: " . $e->getMessage();
+//     }
+// });
+
+// Route::get('/test-mail', function () {
+//     \Mail::raw('Testing Gmail SMTP from Laravel', function ($message) {
+//         $message->to('test@gmail.com')
+//                 ->subject('SMTP Test');
+//     });
+
+//     return "Email sent!";
+// });
+
+
+// Route::get('/test-queued-mail', function () {
+//     Mail::to('test@gmail.com')->queue(new App\Mail\TaskReminderMail(\App\Models\Task::first()));
+
+//     return "Queued mail triggered!";
+// });
 
 
 Route::middleware('auth')->group(function () {

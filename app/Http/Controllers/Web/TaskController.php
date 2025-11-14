@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exception;
+use Carbon\Carbon;
+
 use App\Models\Task;
 
 class TaskController extends Controller
@@ -18,11 +20,19 @@ class TaskController extends Controller
      */
     public function index()
     {
+        // $tomorrow = Carbon::tomorrow()->toDateString();
+
+        // $tasks = Task::with('user')
+        //     ->whereDate('due_date', $tomorrow)
+        //     ->get()
+        // ;
+
+        // dd($tasks);
         try {
             $tasks = Task::select('id','title','status','due_date')
                 ->where('user_id', Auth::id())
                 ->orderBy('id', 'desc')
-                ->paginate(10);
+                ->paginate(2);
 
             return view('tasks.index', compact('tasks'));
 
