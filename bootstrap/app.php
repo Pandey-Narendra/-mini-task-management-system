@@ -23,10 +23,12 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
 
-    ->withSchedule(function (Schedule $schedule): void {
-        // We will add the Task Reminder Job later
-        // Example:
-        // $schedule->job(new \App\Jobs\SendTaskReminderJob)->daily();
+    ->withSchedule(function (Illuminate\Console\Scheduling\Schedule $schedule) {
+        $schedule->job(new \App\Jobs\SendTaskReminderJob())
+            ->dailyAt('09:00') 
+            ->onFailure(function ($e) {
+                \Log::error('Task Reminder Scheduler failed: '.$e->getMessage());
+        });
     })
 
     ->withExceptions(function (Exceptions $exceptions): void {
