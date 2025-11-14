@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "3322e244-ea92-43f2-aaf6-7dfb7cfeedfd",
+		"name": "task management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34990356"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Demo User\",\r\n  \"email\": \"demo@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/register",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				},
+				"description": "task management"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"demo@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				},
+				"description": "task management"
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 3|VFWQmTpadDknekNE7Oc9Y3fVZWhogxeM1FEwcJjld6b043b9",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/profile",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 3|VFWQmTpadDknekNE7Oc9Y3fVZWhogxeM1FEwcJjld6b043b9",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/logout",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/logout",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " Post Task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|RXSGJKfFLwDLkWebe8xZbHFNr4oxfnn2VVtKQLyK22841cbc",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Learn Sanctum11\",\r\n    \"description\": \"Token based API11\",\r\n    \"status\": \"pending\",\r\n    \"due_date\": \"2025-11-20\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/tasks",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|RXSGJKfFLwDLkWebe8xZbHFNr4oxfnn2VVtKQLyK22841cbc",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Learn Sanctum Updated\",\r\n    \"description\": \"Updated description\",\r\n    \"status\": \"in-progress\",\r\n    \"due_date\": \"2025-11-25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/tasks/7",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"tasks",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|RXSGJKfFLwDLkWebe8xZbHFNr4oxfnn2VVtKQLyK22841cbc",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/tasks/7",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"tasks",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Tasks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|RXSGJKfFLwDLkWebe8xZbHFNr4oxfnn2VVtKQLyK22841cbc",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://cayson-semiarid-harlee.ngrok-free.dev/api/auth/tasks?page=1",
+					"protocol": "https",
+					"host": [
+						"cayson-semiarid-harlee",
+						"ngrok-free",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

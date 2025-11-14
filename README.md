@@ -1,59 +1,224 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📌 Laravel 12 Task Management System
+A fully secure and optimized **Task Management API + Web Application** built with **Laravel 12**, **Sanctum authentication**, **Bootstrap UI**, **caching**, **pagination**, **clean architecture**, and **RESTful API best practices**.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🔐 Authentication (API)
+- Register User  
+- Login & Token Generation (Sanctum Personal Access Tokens)  
+- Logout  
+- Profile (Authenticated User)  
+- Fully validated and secure  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🗂 Task Management (API + Web)
+- Create, Read, Update, Delete Tasks  
+- Task Ownership (User can access only their tasks)  
+- Pagination + Query Optimization  
+- API Resource transformers  
+- Cache-based listing (auto invalidates on create/update/delete)  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🎨 Web UI (Bootstrap 5)
+- Dashboard listing tasks  
+- Create Task form  
+- Edit Task form  
+- Delete with confirmation  
+- Beautiful Bootstrap UI  
+- Pagination (Bootstrap styled)  
 
-## Learning Laravel
+### 🛡 Security
+- Sanctum Token Auth  
+- Input validation everywhere  
+- Error handling with JSON structure  
+- Throttling for brute force  
+- Fetch-only-required columns  
+- Clean architecture (Controller → Request → Service → Model)  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📁 Project Structure
 
-## Laravel Sponsors
+app/
+├── Http/
+│ ├── Controllers/Api
+│ ├── Controllers/Web
+│ ├── Requests
+│ ├── Resources
+├── Models/
+├── Services/
+routes/
+├── api.php
+├── web.php
+resources/
+├── views/tasks (Bootstrap Blade UI)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+yaml
+Copy code
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🧰 Requirements
 
-## Contributing
+- PHP 8.2+
+- Composer 2+
+- MySQL 8+
+- Laravel 12
+- Node.js (optional for UI assets)
+- Postman (for API testing)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## ⚙️ Installation & Setup
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 1. Clone Repository
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
 
-## Security Vulnerabilities
+# 2. Install Dependencies
+    composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 3. Create .env
+    cp .env.example .env
 
-## License
+# 4. Generate Application Key
+    php artisan key:generate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 5️. Configure Database
+
+# 6️. Run Migrations
+
+    php artisan migrate
+
+# 7️. Start Server
+
+    php artisan serve
+    
+## Sanctum Authentication (API)
+
+# 1. Register
+   
+    POST /api/auth/register
+    Body:
+
+    json
+
+    {
+        "name": "John Doe",
+        "email": "john@gmail.com",
+        "password": "password"
+    }
+
+# 2. Login
+
+    POST /api/auth/login
+
+    Response:
+    {
+        "token": "xxxxx",
+        "user": { }
+    }
+
+    Add header:
+        Authorization: Bearer <token>
+
+
+##    Task API Endpoints
+
+    Method	Endpoint	Description
+    
+1)    GET	/api/tasks	List Tasks (cached + paginated)
+2)    POST	/api/tasks	Create Task
+3)    GET	/api/tasks/{id}	Show Task
+4)    PUT	/api/tasks/{id}	Update Task
+5)    DELETE	/api/tasks/{id}	Delete Task
+
+## Web Routes (Blade UI)
+    Route	Description
+    
+1)    GET /tasks	Task Dashboard
+2)    GET /tasks/create	Create Form
+3)    GET /tasks/{id}/edit	Edit Form
+4)    POST /tasks	Store Task
+5)    PUT /tasks/{id}	Update Task
+6)    DELETE /tasks/{id}	Delete Task
+
+## Testing with Postman
+
+    Authorization
+    Add in Postman:
+
+    Header:
+    Authorization: Bearer <token>
+    Accept: application/json
+    
+# Postman collection recommended:
+
+    Register
+
+    Login
+
+    Logout
+
+    Create Task
+
+    Update Task
+
+    Delete Task
+
+    Get All Tasks
+
+# Caching Strategy
+Action	Cache Behavior
+GET /tasks	Cache tasks for 60 seconds
+POST /tasks	Clear cache
+PUT /tasks	Clear cache
+DELETE /tasks	Clear cache
+
+# Error Handling Format (Standardized)
+Example error response:
+
+# json
+
+    {
+    "success": false,
+    "message": "Validation failed",
+    "errors": {
+        "email": ["The email field is required."]
+    }
+    }
+
+#  Pagination Example
+
+    GET /api/tasks?page=1
+    
+    Response:
+        json
+        {
+            "data": [],
+            "meta": {
+                "current_page": 1,
+                "total": 20
+            }
+        }
+
+## Summary
+    This README is ready for GitHub and explains your Laravel 12
+    API + Web Application with:
+
+    Sanctum authentication
+
+    Task CRUD
+
+    Web Blade UI (Bootstrap)
+
+    API endpoints
+
+    Pagination
+
+    Caching
+
+    Secure validation
+
+    Error formatting
+
