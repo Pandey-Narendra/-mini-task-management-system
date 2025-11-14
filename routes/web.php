@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\TaskController;
-use App\Mail\TaskReminderMail;
+// use App\Mail\TaskReminderMail;
+use App\emails\TaskReminderMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Task;
 
